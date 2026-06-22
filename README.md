@@ -1,2 +1,2 @@
 # RiverFlow
-Just A Web Development Package kit, But Different
+Just A Web Development Package Kit, But Different
