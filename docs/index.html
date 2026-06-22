@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docs — Riverflow</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0d0d0d;
+      --surface: #111;
+      --border:  rgba(255,255,255,0.07);
+      --text:    #e2e8f0;
+      --muted:   #4a5568;
+      --accent:  #7c85ff;
+      --mono:    'Consolas', 'Fira Code', monospace;
+      --kw:  #c792ea;
+      --fn:  #82aaff;
+      --str: #c3e88d;
+      --num: #f78c6c;
+      --cmt: #4a5568;
+      --tag: #f07178;
+      --att: #ffcb6b;
+      --val: #c3e88d;
+    }
+
+    html, body { height: 100%; overflow: hidden; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      display: flex;
+    }
+
+    /* ── Sidebar ── */
+    nav {
+      width: 230px;
+      flex-shrink: 0;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 2rem 0;
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+      padding: 0 1.5rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+
+    .nav-group {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 1.2rem 1.5rem 0.4rem;
+    }
+
+    nav a {
+      display: block;
+      padding: 5px 1.5rem;
+      font-size: 13px;
+      color: #4a5568;
+      text-decoration: none;
+      transition: color 0.12s;
+      border-left: 2px solid transparent;
+    }
+
+    nav a:hover { color: var(--text); }
+    nav a.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: rgba(124,133,255,0.06);
+    }
+
+    nav::-webkit-scrollbar { width: 4px; }
+    nav::-webkit-scrollbar-thumb { background: #1e1e1e; border-radius: 4px; }
+
+    /* ── Main scroll area ── */
+    main {
+      flex: 1;
+      height: 100vh;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    main::-webkit-scrollbar { width: 6px; }
+    main::-webkit-scrollbar-thumb { background: #1e1e1e; border-radius: 4px; }
+
+    .main-inner {
+      max-width: 820px;
+      padding: 4rem 3rem 8rem;
+    }
+
+    /* ── Sections ── */
+    .doc-section { padding-top: 3.5rem; }
+    .doc-section + .doc-section { border-top: 1px solid var(--border); }
+
+    /* ── Typography ── */
+    h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; color: #fff; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.3rem; font-weight: 600; color: #fff; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+    h3 { font-size: 0.9rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin: 2rem 0 0.6rem; }
+    p { color: #64748b; margin-bottom: 0.8rem; font-size: 14.5px; }
+
+    .tag-badge {
+      font-size: 11px; font-weight: 500;
+      background: rgba(124,133,255,0.1); color: var(--accent);
+      padding: 2px 10px; border-radius: 20px; letter-spacing: 0.04em;
+    }
+
+    /* ── Code ── */
+    pre {
+      background: #080808; border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.1rem 1.3rem;
+      overflow-x: auto; margin: 0.8rem 0;
+    }
+    pre code { font-family: var(--mono); font-size: 13px; line-height: 1.75; color: var(--text); }
+    code {
+      font-family: var(--mono); font-size: 12.5px;
+      background: rgba(255,255,255,0.05); padding: 1px 7px;
+      border-radius: 4px; color: var(--str);
+    }
+
+    .kw  { color: var(--kw);  }
+    .fn  { color: var(--fn);  }
+    .str { color: var(--str); }
+    .num { color: var(--num); }
+    .cmt { color: var(--cmt); font-style: italic; }
+    .tag { color: var(--tag); }
+    .att { color: var(--att); }
+    .val { color: var(--val); }
+    .pun { color: var(--fn);  }
+
+    /* ── Table ── */
+    table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 13px; }
+    th { text-align: left; padding: 7px 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); }
+    td { padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.03); color: #64748b; vertical-align: top; }
+    td:first-child { color: var(--str); font-family: var(--mono); font-size: 12px; }
+    td:nth-child(2) { color: var(--num); font-family: var(--mono); font-size: 12px; }
+
+    /* ── Callout ── */
+    .callout {
+      background: rgba(124,133,255,0.06); border: 1px solid rgba(124,133,255,0.15);
+      border-radius: 8px; padding: 0.85rem 1.1rem; margin: 1rem 0;
+      font-size: 13.5px; color: #64748b;
+    }
+    .callout strong { color: var(--accent); }
+
+    /* ── File tree ── */
+    .tree {
+      background: #080808; border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.1rem 1.3rem;
+      font-family: var(--mono); font-size: 13px; line-height: 2; color: #4a5568;
+    }
+    .tree .d { color: var(--fn); }
+    .tree .f { color: #64748b; }
+    .tree .n { color: var(--muted); font-style: italic; }
+
+    /* ── Pills ── */
+    .pills { display: flex; flex-wrap: wrap; gap: 6px; margin: 0.6rem 0; }
+    .pill { font-size: 11.5px; font-family: var(--mono); padding: 2px 10px; border-radius: 20px; background: rgba(255,255,255,0.04); color: #4a5568; border: 1px solid var(--border); }
+
+    .intro-sub { color: #4a5568; font-size: 14px; margin-bottom: 2rem; }
+
+    @media (max-width: 700px) {
+      nav { display: none; }
+      .main-inner { padding: 2rem 1.2rem 5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Riverflow · Docs</div>
+  <div class="nav-group">Start</div>
+  <a href="#intro">Introduction</a>
+  <a href="#structure">File Structure</a>
+  <div class="nav-group">Modules</div>
+  <a href="#bar">bar.js</a>
+  <a href="#editor">editor.js</a>
+  <a href="#terminal">terminal.js</a>
+  <a href="#typing">typing.js</a>
+  <a href="#underwater">underwater.js</a>
+  <a href="#scroll">scroll.js</a>
+</nav>
+
+<main id="main-scroll">
+<div class="main-inner">
+
+  <section class="doc-section" id="intro">
+    <h1>Riverflow Docs</h1>
+    <p class="intro-sub">Lightweight, zero-dependency JS modules. Drop a file in, add a class or script tag, done. No build step, no npm, no framework.</p>
+  </section>
+
+  <section class="doc-section" id="structure">
+    <h2>File Structure</h2>
+    <div class="tree">
+      <span class="d">project/</span><br>
+      &nbsp;&nbsp;<span class="d">bar/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">bar.js</span><br>
+      &nbsp;&nbsp;<span class="d">editor/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">editor.js</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">terminal.js</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">highlight.min.js</span><br>
+      &nbsp;&nbsp;<span class="d">effects/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">underwater.js</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">typing.js</span><br>
+      &nbsp;&nbsp;<span class="d">scroll/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">scroll.js</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">scroll.css</span><br>
+      &nbsp;&nbsp;<span class="d">docs/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">index.html</span> <span class="n">← you are here</span><br>
+      &nbsp;&nbsp;<span class="f">index.html</span>
+    </div>
+  </section>
+
+  <section class="doc-section" id="bar">
+    <h2>bar.js <span class="tag-badge">Loading Bar</span></h2>
+    <p>A slim progress bar across the top of the page on every load. Trickles forward during loading, snaps to 100% when ready, then fades out.</p>
+
+    <h3>Basic</h3>
+    <pre><code><span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"bar/bar.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="cmt">&lt;!-- default: solid blue, 3px --&gt;</span></code></pre>
+
+    <h3>Custom color</h3>
+    <pre><code><span class="tag">&lt;script&gt;</span>
+  <span class="kw">window</span>.BarConfig = { <span class="att">color</span>: <span class="str">'#f43f5e'</span> }
+<span class="tag">&lt;/script&gt;</span>
+<span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"bar/bar.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+
+    <h3>Gradient</h3>
+    <pre><code><span class="tag">&lt;script&gt;</span>
+  <span class="kw">window</span>.BarConfig = {
+    <span class="att">gradient</span>: <span class="str">'linear-gradient(to right, #f093fb, #f5576c, #4facfe)'</span>
+  }
+<span class="tag">&lt;/script&gt;</span>
+<span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"bar/bar.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+
+    <div class="callout"><strong>Order matters.</strong> The <code>window.BarConfig</code> script must come before <code>bar.js</code>.</div>
+
+    <h3>Options</h3>
+    <table>
+      <tr><th>Option</th><th>Default</th><th>What it does</th></tr>
+      <tr><td>color</td><td>'#3b82f6'</td><td>Solid bar color</td></tr>
+      <tr><td>gradient</td><td>null</td><td>CSS gradient string — overrides color</td></tr>
+      <tr><td>height</td><td>3</td><td>Bar thickness in px</td></tr>
+      <tr><td>duration</td><td>600</td><td>Finish + fade-out speed in ms</td></tr>
+    </table>
+  </section>
+
+  <section class="doc-section" id="editor">
+    <h2>editor.js <span class="tag-badge">Code Editor</span></h2>
+    <p>Turns any element with <code>class="editor"</code> into a code editor with syntax highlighting. Powered by highlight.js — 190+ languages, auto-detected.</p>
+    <div class="callout"><strong>Requires highlight.min.js</strong> in the same <code>editor/</code> folder. The script loads it automatically.</div>
+
+    <h3>Basic</h3>
+    <pre><code><span class="tag">&lt;div</span> <span class="att">class</span>=<span class="str">"editor editor-dark editor-number"</span><span class="tag">&gt;</span>
+  <span class="kw">const</span> hello = () <span class="pun">=&gt;</span> <span class="str">"world"</span>;
+<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"editor/editor.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+
+    <h3>Force a language</h3>
+    <pre><code><span class="tag">&lt;div</span> <span class="att">class</span>=<span class="str">"editor editor-dark"</span> <span class="att">data-lang</span>=<span class="str">"python"</span><span class="tag">&gt;</span>
+  def greet(name):
+      return f<span class="str">"Hello, {name}"</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+
+    <h3>Classes</h3>
+    <table>
+      <tr><th>Class</th><th>Default</th><th>What it does</th></tr>
+      <tr><td>editor</td><td>—</td><td>Required. Activates the editor</td></tr>
+      <tr><td>editor-dark</td><td>—</td><td>Dark theme</td></tr>
+      <tr><td>editor-light</td><td>—</td><td>Light theme</td></tr>
+      <tr><td>editor-glow</td><td>off</td><td>Syntax tokens glow with their own color</td></tr>
+      <tr><td>editor-write</td><td>on</td><td>Editable (default, no need to add)</td></tr>
+      <tr><td>editor-read</td><td>off</td><td>Read-only, shows a badge</td></tr>
+      <tr><td>editor-number</td><td>off</td><td>Line numbers on the left</td></tr>
+      <tr><td>editor-motion</td><td>off</td><td>Animated cursor + typed chars fade in</td></tr>
+    </table>
+
+    <h3>Languages (examples)</h3>
+    <div class="pills">
+      <span class="pill">javascript</span><span class="pill">typescript</span><span class="pill">python</span>
+      <span class="pill">rust</span><span class="pill">go</span><span class="pill">cpp</span>
+      <span class="pill">html</span><span class="pill">css</span><span class="pill">sql</span>
+      <span class="pill">php</span><span class="pill">bash</span><span class="pill">json</span>
+      <span class="pill">+ 180 more</span>
+    </div>
+  </section>
+
+  <section class="doc-section" id="terminal">
+    <h2>terminal.js <span class="tag-badge">Terminal / Console</span></h2>
+    <p>A terminal emulator component. Two modes: plain display for read-only output, and <code>terminal-interactive</code> for a real shell where users type commands.</p>
+
+    <h3>Log mode (read-only)</h3>
+    <pre><code><span class="tag">&lt;div</span> <span class="att">class</span>=<span class="str">"terminal"</span> <span class="att">data-title</span>=<span class="str">"output"</span><span class="tag">&gt;</span>
+  $ npm install
+  + Installing packages...
+  + Done in 3.2s
+  ! 2 vulnerabilities found
+  ? Run npm audit fix to resolve
+<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"editor/terminal.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+
+    <h3>Interactive mode</h3>
+    <pre><code><span class="tag">&lt;div</span> <span class="att">class</span>=<span class="str">"terminal terminal-interactive"</span> <span class="att">data-prompt</span>=<span class="str">"user@host:~$"</span><span class="tag">&gt;</span>
+  # Welcome! Type help to see commands.
+<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"editor/terminal.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+
+    <h3>With motion</h3>
+    <pre><code><span class="tag">&lt;div</span> <span class="att">class</span>=<span class="str">"terminal terminal-interactive terminal-motion"</span><span class="tag">&gt;</span>
+  $ echo hello
+<span class="tag">&lt;/div&gt;</span></code></pre>
+
+    <h3>Line syntax</h3>
+    <table>
+      <tr><th>Prefix</th><th>Color</th><th>Meaning</th></tr>
+      <tr><td>$</td><td>blue</td><td>Command line (shown with prompt)</td></tr>
+      <tr><td>&gt;</td><td>white</td><td>Plain output / info</td></tr>
+      <tr><td>+</td><td>green</td><td>Success message</td></tr>
+      <tr><td>!</td><td>red</td><td>Error message</td></tr>
+      <tr><td>?</td><td>yellow</td><td>Warning message</td></tr>
+      <tr><td>#</td><td>muted</td><td>Comment / system message</td></tr>
+    </table>
+
+    <h3>Classes</h3>
+    <table>
+      <tr><th>Class</th><th>What it does</th></tr>
+      <tr><td>terminal</td><td>Required. Activates the terminal</td></tr>
+      <tr><td>terminal-interactive</td><td>Adds an input row — users can type commands</td></tr>
+      <tr><td>terminal-motion</td><td>Animated blinking caret + output lines fade in</td></tr>
+    </table>
+
+    <h3>Data attributes</h3>
+    <table>
+      <tr><th>Attribute</th><th>Default</th><th>What it does</th></tr>
+      <tr><td>data-title</td><td>"bash"</td><td>Title shown in the header bar</td></tr>
+      <tr><td>data-prompt</td><td>"~$"</td><td>Prompt prefix shown before commands</td></tr>
+    </table>
+
+    <h3>Custom commands</h3>
+    <pre><code><span class="tag">&lt;script&gt;</span>
+  <span class="kw">window</span>.TerminalCommands = {
+    <span class="fn">greet</span>(args, print) {
+      print(<span class="str">`+ Hello, ${args[0] || 'stranger'}!`</span>);
+    },
+    <span class="fn">date</span>(args, print) {
+      print(<span class="str">`> ${new Date().toLocaleString()}`</span>);
+    }
+  }
+<span class="tag">&lt;/script&gt;</span>
+<span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"editor/terminal.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+
+    <div class="callout"><strong>Built-in commands:</strong> <code>clear</code> clears the output. <code>help</code> lists commands. Arrow Up/Down cycles command history.</div>
+  </section>
+
+  <section class="doc-section" id="typing">
+    <h2>typing.js <span class="tag-badge">Typing Effect</span></h2>
+    <p>Typewriter animation for any element — headings, paragraphs, code, spans.</p>
+
+    <h3>Plain</h3>
+    <pre><code><span class="tag">&lt;h1</span> <span class="att">class</span>=<span class="str">"typing"</span><span class="tag">&gt;</span>Hello, World.<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"effects/typing.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+
+    <h3>Smooth</h3>
+    <pre><code><span class="tag">&lt;h1</span> <span class="att">class</span>=<span class="str">"typing typing-smooth"</span> <span class="att">data-delay</span>=<span class="str">"500"</span><span class="tag">&gt;</span>
+  Building the future.
+<span class="tag">&lt;/h1&gt;</span></code></pre>
+
+    <h3>Classes</h3>
+    <table>
+      <tr><th>Class</th><th>What it does</th></tr>
+      <tr><td>typing</td><td>Required. Types text with a hard blinking cursor</td></tr>
+      <tr><td>typing-smooth</td><td>Each character fades in, cursor pulses smoothly</td></tr>
+    </table>
+
+    <h3>Data attributes</h3>
+    <table>
+      <tr><th>Attribute</th><th>Default</th><th>What it does</th></tr>
+      <tr><td>data-speed</td><td>50</td><td>ms between characters. Lower = faster</td></tr>
+      <tr><td>data-delay</td><td>0</td><td>ms to wait before starting</td></tr>
+    </table>
+  </section>
+
+  <section class="doc-section" id="underwater">
+    <h2>underwater.js <span class="tag-badge">Atmosphere Effect</span></h2>
+    <p>A deep underwater atmosphere over the whole page — blue tint, drifting caustic light blobs, backdrop blur, and an animated wave distortion.</p>
+
+    <h3>Usage</h3>
+    <pre><code><span class="tag">&lt;body</span> <span class="att">class</span>=<span class="str">"effect-underwater"</span><span class="tag">&gt;</span>
+  ...
+  <span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"effects/underwater.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;/body&gt;</span></code></pre>
+
+    <div class="callout"><strong>Tip:</strong> Works best on dark backgrounds. All layers are <code>pointer-events: none</code> — never blocks clicks.</div>
+
+    <h3>What it does</h3>
+    <table>
+      <tr><th>Layer</th><th>Description</th></tr>
+      <tr><td>color tint</td><td>Deep blue gradient over the full page</td></tr>
+      <tr><td>caustics</td><td>Animated light blobs drifting on canvas, like light through water</td></tr>
+      <tr><td>blur</td><td>Subtle backdrop-filter blur + saturation boost</td></tr>
+      <tr><td>wave distortion</td><td>SVG fractal noise making the tint ripple slowly</td></tr>
+      <tr><td>scroll shift</td><td>Caustic blobs shift as you scroll</td></tr>
+    </table>
+  </section>
+
+  <section class="doc-section" id="scroll">
+    <h2>scroll.js <span class="tag-badge">Smooth Scroll</span></h2>
+    <p>Replaces native scroll with smooth inertia-based scrolling. Content glides to a stop instead of snapping instantly.</p>
+
+    <div class="callout"><strong>Note:</strong> Don't use scroll.js on the docs page itself — the docs use native CSS overflow scroll on <code>&lt;main&gt;</code> to avoid conflicts with the fixed sidebar.</div>
+
+    <h3>Auto-initialize</h3>
+    <pre><code><span class="tag">&lt;body</span> <span class="att">scroll</span> <span class="att">scroll-speed</span>=<span class="str">"0.5"</span><span class="tag">&gt;</span>
+  ...
+  <span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"scroll/scroll.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;/body&gt;</span></code></pre>
+
+    <h3>Required CSS</h3>
+    <pre><code><span class="tag">&lt;link</span> <span class="att">rel</span>=<span class="str">"stylesheet"</span> <span class="att">href</span>=<span class="str">"scroll/scroll.css"</span><span class="tag">&gt;</span></code></pre>
+
+    <h3>Manual initialize</h3>
+    <pre><code><span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"scroll/scroll.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;script&gt;</span>
+  <span class="kw">const</span> s = <span class="kw">new</span> <span class="fn">SimpleScroll</span>({ <span class="att">speed</span>: <span class="num">0.6</span>, <span class="att">lerp</span>: <span class="num">0.08</span> });
+<span class="tag">&lt;/script&gt;</span></code></pre>
+
+    <h3>Options</h3>
+    <table>
+      <tr><th>Option</th><th>Default</th><th>What it does</th></tr>
+      <tr><td>speed</td><td>0.5</td><td>How much each wheel tick scrolls. Higher = faster</td></tr>
+      <tr><td>lerp</td><td>0.1</td><td>Smoothing. Lower = more glide, higher = snappier</td></tr>
+    </table>
+
+    <h3>Methods</h3>
+    <table>
+      <tr><th>Method</th><th>Description</th></tr>
+      <tr><td>scrollTo(target, duration)</td><td>Scroll to a Y number or an element. Duration in ms (default 1000)</td></tr>
+      <tr><td>destroy()</td><td>Removes all listeners and restores normal scrolling</td></tr>
+    </table>
+
+    <pre><code><span class="cmt">// scroll to position</span>
+<span class="kw">window</span>.simpleScroll.<span class="fn">scrollTo</span>(<span class="num">800</span>);
+
+<span class="cmt">// scroll to element</span>
+<span class="kw">window</span>.simpleScroll.<span class="fn">scrollTo</span>(document.<span class="fn">querySelector</span>(<span class="str">'#about'</span>));
+
+<span class="cmt">// destroy</span>
+<span class="kw">window</span>.simpleScroll.<span class="fn">destroy</span>();</code></pre>
+  </section>
+
+</div>
+</main>
+
+<script>
+  const links    = document.querySelectorAll('nav a');
+  const sections = document.querySelectorAll('section[id]');
+  const scroller = document.getElementById('main-scroll');
+
+  /* nav clicks — smooth scroll inside <main> */
+  links.forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  /* scroll-spy inside <main> */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`nav a[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { root: scroller, rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>

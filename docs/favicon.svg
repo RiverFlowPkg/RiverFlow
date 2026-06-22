@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Droplet outline -->
+  <path
+    d="M32 8 C32 8 50 26 50 39 C50 50 42 58 32 58 C22 58 14 50 14 39 C14 26 32 8 32 8 Z"
+    fill="none"
+    stroke="#00D8FF"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Filled river -->
+  <path
+    d="M15 36
+       C22 31 29 31 36 36
+       C40 39 45 40 49 38
+       L49 42
+       C44 45 37 47 30 45
+       C24 43 19 39 15 39
+       Z"
+    fill="#00D8FF"
+  />
+</svg>
