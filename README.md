@@ -1,4 +1,4 @@
-# riverflow
+# riverflow.
 
 Drop-in vanilla JS browser widgets — no build step, no bundler. Grab a script,
 drop it in a `<script>` tag, and it wires itself up.
