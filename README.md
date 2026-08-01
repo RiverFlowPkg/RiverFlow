@@ -6,7 +6,7 @@ drop it in a `<script>` tag, and it wires itself up.
 ## Install
 
 ```
-npm install @riverflowpkg/riverflow
+npm install @riverflowpkg/riverflow@1.0.2
 ```
 
 Files live in `node_modules/riverflow/`. Copy the ones you need into your
