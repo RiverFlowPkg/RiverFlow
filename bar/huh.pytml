@@ -1,0 +1,8 @@
+<able2>[progressed]</able2>
+
+log[bs-t2]:
+    "huh.pytml"
+    "huh.exit"
+    "usedAble2.huh.pytml"
+    if["huh.pytml"] = huh.success = openwrite.exit()
+log[];
