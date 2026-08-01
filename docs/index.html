@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Docs — Riverflow</title>
+  <title>Docs - Riverflow</title>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -220,11 +220,11 @@
     <p>Files land in <code>node_modules/@riverflowpkg/riverflow/</code>. Copy what you need into your public folder, or point a script tag straight at <code>node_modules</code> during local dev.</p>
 
     <h3>Option 2 — CDN (unpkg)</h3>
-    <pre><code><span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"https://unpkg.com/@riverflowpkg/riverflow@1.0.1/"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+    <pre><code><span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"https://unpkg.com/@riverflowpkg/riverflow@1.0.2/bar/bar.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
 
     <h3>Option 3 — CDN (jsDelivr)</h3>
-    <pre><code><span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.0.1/"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
-    <div class="callout"><strong>Tip:</strong> Pin a version (<code>@1.0.1</code>) in production so a future release can't change behavior under you. Drop the version for "always latest" during prototyping.</div>
+    <pre><code><span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.0.2/bar/bar.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+    <div class="callout"><strong>Tip:</strong> Pin a version (<code>@1.0.2</code>) in production so a future release can't change behavior under you. Drop the version for "always latest" during prototyping.</div>
 
     <h3>Option 4 — download directly</h3>
     <p>No installer needed — every module is a single self-contained file. Grab the ones you want straight from the <a href="https://github.com/RiverFlowPkg/RiverFlow" style="color: var(--accent);">GitHub repo</a> and drop them in your project.</p>
@@ -523,6 +523,7 @@
     <h2>Changelog</h2>
     <table>
       <tr><th>Version</th><th>Notes</th></tr>
+      <tr><td>1.0.2</td><td>Fixed <code>editor.js</code> loading <code>highlight.min.js</code> from an incorrect relative path, which silently broke syntax highlighting when used from a project's root folder.</td></tr>
       <tr><td>1.0.1</td><td>Published to npm as a scoped package (<code>@riverflowpkg/riverflow</code>).</td></tr>
       <tr><td>1.0.0</td><td>Initial release — bar, editor, terminal, typing, underwater, scroll modules.</td></tr>
     </table>
