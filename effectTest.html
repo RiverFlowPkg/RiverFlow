@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>typing.js demo</title>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body { background: #111; color: #eee; font-family: system-ui, sans-serif; }
+    .scroll-container { padding: 4rem 2rem; display: flex; flex-direction: column; gap: 3rem; }
+    .label { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    h1 { font-size: 2rem; font-weight: 600; }
+    p  { font-size: 1rem; max-width: 500px; line-height: 1.6; color: #aaa; }
+    code { font-family: monospace; font-size: 0.9rem; color: #c3e88d; }
+  </style>
+</head>
+<body class="effect-sunshine" data-scroll-speed="0.3">
+
+  <div class="scroll-container" data-scroll-container>
+    <div data-scroll-section>
+      <p class="label">class="typing" — plain, no animation</p>
+      <h1 class="typing">Hello, World.</h1>
+    </div>
+
+    <div data-scroll-section>
+      <p class="label">class="typing typing-smooth" — fade-in chars + smooth cursor</p>
+      <h1 class="typing typing-smooth" data-delay="800">Building the future.</h1>
+    </div>
+
+    <div data-scroll-section>
+      <p class="label">class="typing" on a paragraph</p>
+      <p class="typing" data-speed="30" data-delay="400">This is a longer sentence typed out character by character with no extra animation, just a blinking cursor at the end.</p>
+    </div>
+
+    <div data-scroll-section>
+      <p class="label">class="typing typing-smooth" on a paragraph</p>
+      <p class="typing typing-smooth" data-speed="35" data-delay="600">Each character fades in softly, and the cursor pulses in and out with a smooth transition instead of a hard blink.</p>
+    </div>
+
+    <div data-scroll-section>
+      <p class="label">class="typing" on code</p>
+      <code class="typing" data-speed="40" data-delay="200">const hello = () => "world";</code>
+    </div>
+  </div>
+
+  <script src="effects/underwater.js"></script>
+  <script src="./effects/typing.js"></script>
+  <script src="scroll/scroll.js"></script>
+  <script>
+    const scroll = new LocomotiveScroll({
+      el: document.querySelector('[data-scroll-container]'),
+      smooth: true
+    });
+  </script>
+</body>
+</html>

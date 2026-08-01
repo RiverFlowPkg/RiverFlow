@@ -1,0 +1,32 @@
+{
+  "name": "@riverflowpkg/riverflow",
+  "version": "1.0.1",
+  "description": "Drop-in vanilla JS browser widgets: top loading bar, smooth scroll, typing effect, underwater overlay, and a code editor with syntax highlighting.",
+  "keywords": [
+    "loading-bar",
+    "smooth-scroll",
+    "typing-effect",
+    "code-editor",
+    "vanilla-js",
+    "browser-widget",
+    "ui"
+  ],
+  "author": "RiverFlowPkg",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RiverFlowPkg/RiverFlow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RiverFlowPkg/RiverFlow/issues"
+  },
+  "homepage": "https://github.com/RiverFlowPkg/RiverFlow#readme",
+  "files": [
+    "bar/",
+    "effects/",
+    "scroll/",
+    "editor/",
+    "README.md",
+    "LICENSE"
+  ]
+}

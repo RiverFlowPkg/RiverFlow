@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bar Test</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      -moz-tap-highlight-color: transparent;
+      tap-highlight-color: transparent;
+    }
+
+    body {
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      background: #111;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      font-weight: 400;
+      animation: appear 2s forwards;
+      position: fixed;
+    }
+
+    h1::before,
+    h1::after {
+      opacity: 0;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+    }
+
+    h1::before {
+      content: "“";
+      animation-name: showQuote;
+      animation-delay: 2s;
+      margin-right: 6px;
+    }
+
+    h1::after {
+      content: "”";
+      animation-name: showQuote;
+      animation-delay: 2s;
+      margin-left: 6px;
+    }
+
+    @keyframes showQuote {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes appear {
+      0% {
+        font-weight: bolder;
+        margin-top: -30px;
+        opacity: 0;
+        color: transparent;
+        -webkit-text-stroke: 0.1px #ffffff;
+      }
+      100% {
+        font-weight: 400;
+        margin-top: 0;
+        opacity: 1;
+        color: #ffffff;
+      }
+    }
+
+    @keyframes quote {
+      0% {
+        ::before,
+        ::after {
+          content: "";
+        }
+      }
+      100% {
+        ::before {
+          content: "“";
+        }
+        ::after {
+          content: "”";
+        }
+      }
+    }
+
+    button {
+      background: #004ac1;
+      border: 1.6px solid #3b82f6;
+      box-shadow: 0 0 8px 1px #3b82f6;
+      padding: 10px;
+      border-radius: 10px;
+      color: #fff;
+      font-family: 'Segoe UI';
+      position: absolute;
+      margin-top: 20%;
+      margin-left: 32%;
+      transition: all 0.4s ease;
+      position: fixed;
+    }
+
+    button:hover {
+      box-shadow: 0 0 5px 1px #004ac1;
+    }
+
+    button[onclick="seeDocs()"] {
+      margin-right: 60%;
+    }
+
+    button[onclick="theCodes()"] {
+      margin-left: 10%;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Bar Test (See the codes to learn more,<br> or see the Docs)</h1>
+
+<!-- This Loading Bar Applies when you link the bar.js, for customization of loading bar, do this -->
+<!-- an example of customized loading bar (solid color):<br>
+<script>
+  window.BarConfig = { color: '#f43f5e' }
+</script>
+
+it changes the loading bar color to pink, or that #f43f5e hex color
+
+but what if you wanted to use gradient? -->
+<!-- an example of customized loading bar (linear gradient color):<br>
+<script>
+  window.BarConfig = {
+    gradient: 'linear-gradient(to right, #f093fb, #f5576c, #4facfe)'
+  }
+</script>
+
+this script will changes the loading bar combined with magenta, pink, blue or we can say #f093fb, #f5576c, #4facfe
+
+the end of the description... -->
+
+<button onclick="theCodes()">See the Codes</button>
+<button onclick="seeDocs()">See Docs</button>
+
+<script>
+  function theCodes() {
+    window.location.href = "./bar/theCodes.html";
+  }
+
+  function seeDocs() {
+    window.location.href = "docs/index.html";
+  }
+</script>
+
+<script src="editor/highlight.min.js"></script>
+<script src="bar/bar.js"></script>
+</body>
+</html>
