@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>theCodes</title>
+  <style>
+    body{
+      background: #000;
+      color: #fff;
+      font-family: 'consolas', 'monospace';
+      margin: 0;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="editor-wrap">
+    <div class="editor editor-dark editor-motion editor-number editor-read">
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;title&gt;Bar Test&lt;/title&gt;
+  &lt;style&gt;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      -moz-tap-highlight-color: transparent;
+      tap-highlight-color: transparent;
+    }
+
+    body {
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      background: #111;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1{
+      font-weight: 400;
+      animation: appear 2s forwards;
+      position: relative;
+    }
+
+    h1::before,
+    h1::after{
+      opacity: 0;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+    }
+
+    h1::before{
+      content: &quot;“&quot;;
+      animation-name: showQuote;
+      animation-delay: 2s;
+      margin-right: 6px;
+    }
+
+    h1::after{
+      content: &quot;”&quot;;
+      animation-name: showQuote;
+      animation-delay: 2s;
+      margin-left: 6px;
+    }
+
+    @keyframes showQuote{
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes appear{
+      0%{
+        font-weight: bolder;
+        margin-top: -30px;
+        opacity: 0;
+        color: transparent;
+        -webkit-text-stroke: 0.1px #ffffff;
+      }
+      100%{
+        font-weight: 400;
+        margin-top: 0;
+        opacity: 1;
+        color: #ffffff;
+      }
+    }
+
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1&gt;Bar Test (See the codes to learn more,&lt;br&gt; or see the Docs)&lt;/h1&gt;
+
+&lt;!-- This Loading Bar Applies when you link the bar.js, for customization of loading bar, do this --&gt;
+&lt;!-- an example of customized loading bar (solid color):&lt;br&gt;
+&lt;script&gt;
+  window.BarConfig = { color: '#f43f5e' }
+&lt;/script&gt;
+
+it changes the loading bar color to pink, or that #f43f5e hex color
+
+but what if you wanted to use gradient? --&gt;
+&lt;!-- an example of customized loading bar (linear gradient color):&lt;br&gt;
+&lt;script&gt;
+  window.BarConfig = {
+    gradient: 'linear-gradient(to right, #f093fb, #f5576c, #4facfe)'
+  }
+&lt;/script&gt;
+
+this script will changes the loading bar combined with magenta, pink, blue or we can say #f093fb, #f5576c, #4facfe
+
+the end of the description... --&gt;
+
+&lt;button onclick=&quot;theCodes()&quot;&gt;See the Codes&lt;/button&gt;
+&lt;button onclick=&quot;seeDocs()&quot;&gt;See Docs&lt;/button&gt;
+
+&lt;script&gt;
+  function theCodes(){
+    window.location.href = &quot;bar/theCodes.html&quot;;
+  }
+
+  function seeDocs(){
+    window.location.href = &quot;docs/index.html&quot;;
+  }
+&lt;/script&gt;
+
+&lt;script src=&quot;bar/bar.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+  </div>
+  
+  <script src="bar.js"></script>
+  <script src="../editor/highlight.min.js"></script>
+  <script src="../editor/editor.js"></script>
+</body>
+</html>
