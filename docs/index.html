@@ -189,6 +189,7 @@
   <div class="nav-logo">Riverflow · Docs</div>
   <div class="nav-group">Start</div>
   <a href="#intro">Introduction</a>
+  <a href="#install">Installation</a>
   <a href="#structure">File Structure</a>
   <div class="nav-group">Modules</div>
   <a href="#bar">bar.js</a>
@@ -197,6 +198,9 @@
   <a href="#typing">typing.js</a>
   <a href="#underwater">underwater.js</a>
   <a href="#scroll">scroll.js</a>
+  <div class="nav-group">More</div>
+  <a href="#faq">FAQ</a>
+  <a href="#changelog">Changelog</a>
 </nav>
 
 <main id="main-scroll">
@@ -205,6 +209,36 @@
   <section class="doc-section" id="intro">
     <h1>Riverflow Docs</h1>
     <p class="intro-sub">Lightweight, zero-dependency JS modules. Drop a file in, add a class or script tag, done. No build step, no npm, no framework.</p>
+  </section>
+
+  <section class="doc-section" id="install">
+    <h2>Installation</h2>
+    <p>No build step, no bundler, no framework — every module works as a plain <code>&lt;script&gt;</code> tag. Pick whichever way of getting the files fits your project.</p>
+
+    <h3>Option 1 — npm</h3>
+    <pre><code><span class="fn">npm</span> install @riverflowpkg/riverflow</code></pre>
+    <p>Files land in <code>node_modules/@riverflowpkg/riverflow/</code>. Copy what you need into your public folder, or point a script tag straight at <code>node_modules</code> during local dev.</p>
+
+    <h3>Option 2 — CDN (unpkg)</h3>
+    <pre><code><span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"https://unpkg.com/@riverflowpkg/riverflow@1.0.1/"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+
+    <h3>Option 3 — CDN (jsDelivr)</h3>
+    <pre><code><span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.0.1/"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+    <div class="callout"><strong>Tip:</strong> Pin a version (<code>@1.0.1</code>) in production so a future release can't change behavior under you. Drop the version for "always latest" during prototyping.</div>
+
+    <h3>Option 4 — download directly</h3>
+    <p>No installer needed — every module is a single self-contained file. Grab the ones you want straight from the <a href="https://github.com/RiverFlowPkg/RiverFlow" style="color: var(--accent);">GitHub repo</a> and drop them in your project.</p>
+
+    <h3>Which file goes with which module</h3>
+    <table>
+      <tr><th>Module</th><th>Path</th><th>Also needs</th></tr>
+      <tr><td>Loading bar</td><td>bar/bar.js</td><td>—</td></tr>
+      <tr><td>Code editor</td><td>editor/editor.js</td><td>editor/highlight.min.js (same folder)</td></tr>
+      <tr><td>Terminal</td><td>editor/terminal.js</td><td>—</td></tr>
+      <tr><td>Typing effect</td><td>effects/typing.js</td><td>—</td></tr>
+      <tr><td>Underwater effect</td><td>effects/underwater.js</td><td>—</td></tr>
+      <tr><td>Smooth scroll</td><td>scroll/scroll.js</td><td>scroll/scroll.css</td></tr>
+    </table>
   </section>
 
   <section class="doc-section" id="structure">
@@ -464,6 +498,34 @@
 
 <span class="cmt">// destroy</span>
 <span class="kw">window</span>.simpleScroll.<span class="fn">destroy</span>();</code></pre>
+  </section>
+
+  <section class="doc-section" id="faq">
+    <h2>FAQ</h2>
+
+    <h3>Do I need a build step?</h3>
+    <p>No. Every module is a plain, self-executing script. Drop it in a <code>&lt;script&gt;</code> tag and it wires itself up on load — no bundler, no transpiler, no framework required.</p>
+
+    <h3>Can I use more than one module at once?</h3>
+    <p>Yes — they're independent and don't share state. Include as many <code>&lt;script&gt;</code> tags as you need. The only cross-module thing to watch is <code>scroll.js</code>: if you're also using it on a page with fixed-position sidebars or nav, test that the two don't fight over scroll containers (see the callout in the <a href="#scroll" style="color: var(--accent);">scroll.js</a> section).</p>
+
+    <h3>Does this work with React / Vue / a bundler?</h3>
+    <p>Not natively — these modules assume a plain HTML page and attach directly to <code>window</code> and the DOM. They'll generally still run inside a framework app if you load them the same way (e.g. via a <code>&lt;script&gt;</code> tag in <code>index.html</code>, or dynamically appended in a <code>useEffect</code>), but there are no framework-specific bindings.</p>
+
+    <h3>Browser support?</h3>
+    <p>Modern evergreen browsers (Chrome, Firefox, Safari, Edge). No transpilation target is provided, so very old browsers (IE11 and earlier) aren't supported.</p>
+
+    <h3>Is there a minified / bundled version?</h3>
+    <p>Not currently — each file ships as-is. Since these are meant to be dropped in individually rather than bundled together, minification savings are small; run them through your own minifier if you need it.</p>
+  </section>
+
+  <section class="doc-section" id="changelog">
+    <h2>Changelog</h2>
+    <table>
+      <tr><th>Version</th><th>Notes</th></tr>
+      <tr><td>1.0.1</td><td>Published to npm as a scoped package (<code>@riverflowpkg/riverflow</code>).</td></tr>
+      <tr><td>1.0.0</td><td>Initial release — bar, editor, terminal, typing, underwater, scroll modules.</td></tr>
+    </table>
   </section>
 
 </div>
