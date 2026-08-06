@@ -197,6 +197,7 @@
   <a href="#terminal">terminal.js</a>
   <a href="#typing">typing.js</a>
   <a href="#underwater">underwater.js</a>
+  <a href="#sunshine">sunshine.js</a>
   <a href="#scroll">scroll.js</a>
   <div class="nav-group">More</div>
   <a href="#faq">FAQ</a>
@@ -237,6 +238,7 @@
       <tr><td>Terminal</td><td>editor/terminal.js</td><td>—</td></tr>
       <tr><td>Typing effect</td><td>effects/typing.js</td><td>—</td></tr>
       <tr><td>Underwater effect</td><td>effects/underwater.js</td><td>—</td></tr>
+      <tr><td>Sunshine effect</td><td>effects/sunshine.js</td><td>—</td></tr>
       <tr><td>Smooth scroll</td><td>scroll/scroll.js</td><td>scroll/scroll.css</td></tr>
     </table>
   </section>
@@ -253,6 +255,7 @@
       &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">highlight.min.js</span><br>
       &nbsp;&nbsp;<span class="d">effects/</span><br>
       &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">underwater.js</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">sunshine.js</span><br>
       &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">typing.js</span><br>
       &nbsp;&nbsp;<span class="d">scroll/</span><br>
       &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">scroll.js</span><br>
@@ -455,6 +458,29 @@
     </table>
   </section>
 
+  <section class="doc-section" id="sunshine">
+    <h2>sunshine.js <span class="tag-badge">Atmosphere Effect</span></h2>
+    <p>A sunshine atmosphere over in the page — bright, blur, lightning.</p>
+
+    <h3>Usage</h3>
+    <pre><code><span class="tag">&lt;body</span> <span class="att">class</span>=<span class="str">"effect-sunshine"</span><span class="tag">&gt;</span>
+  ...
+  <span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"effects/sunshine.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;/body&gt;</span></code></pre>
+
+    <div class="callout"><strong>Tip:</strong> Works best on dark backgrounds. All layers are <code>pointer-events: none</code> — never blocks clicks.</div>
+
+    <h3>What it does</h3>
+    <table>
+      <tr><th>Layer</th><th>Description</th></tr>
+      <tr><td>color tint</td><td>Deep blue gradient over the full page</td></tr>
+      <tr><td>caustics</td><td>Animated light blobs drifting on canvas, like light through water</td></tr>
+      <tr><td>blur</td><td>Subtle backdrop-filter blur + saturation boost</td></tr>
+      <tr><td>wave distortion</td><td>SVG fractal noise making the tint ripple slowly</td></tr>
+      <tr><td>scroll shift</td><td>Caustic blobs shift as you scroll</td></tr>
+    </table>
+  </section>
+
   <section class="doc-section" id="scroll">
     <h2>scroll.js <span class="tag-badge">Smooth Scroll</span></h2>
     <p>Replaces native scroll with smooth inertia-based scrolling. Content glides to a stop instead of snapping instantly.</p>
@@ -523,6 +549,8 @@
     <h2>Changelog</h2>
     <table>
       <tr><th>Version</th><th>Notes</th></tr>
+      <tr><td>1.0.5</td><td>Added <code>sunshine.js</code> so you can use it to give your website a sunny effect. </td></tr>
+      <tr><td>1.0.4</td><td>Updated <code>demo.html</code> and <code>Docs/index.html</code>.</td></tr>
       <tr><td>1.0.3</td><td>Fixed <code>docs/index.html</code> and <code>Demo.html</code> Problems.</td></tr>
       <tr><td>1.0.2</td><td>Fixed <code>editor.js</code> loading <code>highlight.min.js</code> from an incorrect relative path, which silently broke syntax highlighting when used from a project's root folder.</td></tr>
       <tr><td>1.0.1</td><td>Published to npm as a scoped package (<code>@riverflowpkg/riverflow</code>).</td></tr>
