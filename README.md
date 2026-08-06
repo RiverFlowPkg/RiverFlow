@@ -6,7 +6,7 @@ drop it in a `<script>` tag, and it wires itself up.
 ## Install
 
 ```
-npm install @riverflowpkg/riverflow@1.0.3
+npm install @riverflowpkg/riverflow@1.0.5
 ```
 
 Files live in `node_modules/riverflow/`. Copy the ones you need into your
@@ -37,6 +37,12 @@ Optional config: `color`, `gradient`, `height`, `duration`.
 ```html
 <div class="effect-underwater"></div>
 <script src="effects/underwater.js"></script>
+```
+
+### Sunshine overlay (`effects/sunshine.js`)
+```html
+<div class="effect-sunshine"></div>
+<script src="effects/sunshine.js"></script>
 ```
 
 ### Code editor (`editor/editor.js`)
