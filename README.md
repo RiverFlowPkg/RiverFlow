@@ -6,14 +6,14 @@ drop it in a `<script>` tag, and it wires itself up.
 ## Install
 
 ```
-npm install @riverflowpkg/riverflow@1.0.8
+npm install @riverflowpkg/riverflow@1.0.9
 ```
 
 ## Linking
 
 UNPKG
 ```
-https://unpkg.com/@riverflowpkg/riverflow@1.0.8/all.min.js
+https://unpkg.com/@riverflowpkg/riverflow@1.0.9/all.min.js
 ```
 
 JSDelivr
@@ -72,9 +72,7 @@ Toast message with different Themes, Modes, and animations.
 ```html
 <script src="toast/toast.js"></script>
 <script>
-  toast("Hello world!");
-  toast("Something went wrong", { type: "error" });
-  toast("Update complete", { type: "success" });
+toast("Hello world!");
 </script>
 ```
 
