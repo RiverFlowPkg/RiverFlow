@@ -140,33 +140,28 @@ $ npm run build
     Riverflow demo — every module on one page. See the
     <a href="https://RiverFlowPkg.github.io/RiverFlow/">full docs</a> for options and API details.
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.0.7/all.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.0.7/toast/toast.min.js"></script>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow/scroll/scroll.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow/toast/toast.js"></script>
 
   <script>
-    (function () {
-      // FIX: Set toast position to TOP so they're visible!
-      if (typeof setToastPosition !== 'undefined') {
-        setToastPosition('top-right');
-      }
-      
-      // Toast buttons
-      document.getElementById('toast-success-btn').addEventListener('click', () => {
-        toastSuccess('Update complete! 🎉');
-      });
-      document.getElementById('toast-error-btn').addEventListener('click', () => {
-        toastError('Something went wrong ❌');
-      });
-      document.getElementById('toast-warning-btn').addEventListener('click', () => {
-        toastWarning('Check your input ⚠️');
-      });
-      document.getElementById('toast-info-btn').addEventListener('click', () => {
-        toastInfo('New update available 💡');
-      });
+    document.getElementById('toast-success-btn').addEventListener('click', function() {
+      toast('Update complete', 'success');
+    });
+    document.getElementById('toast-error-btn').addEventListener('click', function() {
+      toast('Something went wrong', 'error');
+    });
+    document.getElementById('toast-warning-btn').addEventListener('click', function() {
+      toast('Check your input', 'warning');
+    });
+    document.getElementById('toast-info-btn').addEventListener('click', function() {
+      toast('New update available', 'info');
+    });
 
-      console.log('🍞 Toast ready! Toasts will appear at top-right.');
-    })();
+    setTimeout(function() {
+      toast('Toast ready!');
+    }, 500);
   </script>
 
   <div class="effect-underwater" style="display:none;" id="underwater-anchor"></div>
@@ -177,7 +172,7 @@ $ npm run build
       let on = false;
 
       function setLayers(display) {
-        layerIds.forEach(id => {
+        layerIds.forEach(function(id) {
           const el = document.getElementById(id);
           if (el) el.style.display = display;
         });
@@ -191,9 +186,9 @@ $ npm run build
         }
       }
 
-      ready(() => setLayers('none'));
+      ready(function() { setLayers('none'); });
 
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', function() {
         on = !on;
         setLayers(on ? '' : 'none');
         btn.textContent = on ? 'Turn off underwater effect' : 'Turn on underwater effect';
@@ -211,7 +206,7 @@ $ npm run build
       let on = false;
 
       function setLayers(display) {
-        layerIds.forEach(id => {
+        layerIds.forEach(function(id) {
           const el = document.getElementById(id);
           if (el) el.style.display = display;
         });
@@ -225,9 +220,9 @@ $ npm run build
         }
       }
 
-      ready(() => setLayers('none'));
+      ready(function() { setLayers('none'); });
 
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', function() {
         on = !on;
         setLayers(on ? '' : 'none');
         btn.textContent = on ? 'Turn off sunshine effect' : 'Turn on sunshine effect';
