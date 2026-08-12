@@ -212,11 +212,11 @@
     <p>Files land in <code>node_modules/@riverflowpkg/riverflow/</code>. Copy what you need into your public folder, or point a script tag straight at <code>node_modules</code> during local dev.</p>
 
     <h3>Option 2 — CDN (unpkg)</h3>
-    <pre><code><span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"https://unpkg.com/@riverflowpkg/riverflow@1.0.2/bar/bar.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+    <pre><code><span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"https://unpkg.com/@riverflowpkg/riverflow@1.0.8/bar/bar.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
 
     <h3>Option 3 — CDN (jsDelivr)</h3>
-    <pre><code><span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.0.2/bar/bar.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
-    <div class="callout"><strong>Tip:</strong> Pin a version (<code>@1.0.2</code>) in production so a future release can't change behavior under you. Drop the version for "always latest" during prototyping.</div>
+    <pre><code><span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.0.8/bar/bar.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+    <div class="callout"><strong>Tip:</strong> Pin a version (<code>@1.0.8</code>) in production so a future release can't change behavior under you. Drop the version for "always latest" during prototyping.</div>
 
     <h3>Option 4 — download directly</h3>
     <p>No installer needed — every module is a single self-contained file. Grab the ones you want straight from the <a href="https://github.com/RiverFlowPkg/RiverFlow" style="color: var(--accent);">GitHub repo</a> and drop them in your project.</p>
@@ -594,6 +594,8 @@
     <h2>Changelog</h2>
     <table>
       <tr><th>Version</th><th>Notes</th></tr>
+      <tr><td>1.0.8</td><td>fixed <code>toast.js</code> and <code>all.min.js</code>.</td></tr>
+      <tr><td>1.0.7</td><td>Fixed <code>package.json</code> to add <code>toast.js</code> and <code>all.min.js</code>.</td></tr>
       <tr><td>1.0.6</td><td>New <code>toast.js</code> to display toast notification/message with different themes. and added <code>all.min.js</code> that contains everything.</td></tr>
       <tr><td>1.0.5</td><td>Added <code>sunshine.js</code> so you can use it to give your website a sunny effect.</td></tr>
       <tr><td>1.0.4</td><td>Updated <code>demo.html</code> and <code>Docs/index.html</code>.</td></tr>
