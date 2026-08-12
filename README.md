@@ -6,7 +6,19 @@ drop it in a `<script>` tag, and it wires itself up.
 ## Install
 
 ```
-npm install @riverflowpkg/riverflow@1.0.5
+npm install @riverflowpkg/riverflow@1.0.6
+```
+
+## Linking
+
+UNPKG
+```
+https://unpkg.com/@riverflowpkg/riverflow@1.0.6/all.min.js
+```
+
+JSDelivr
+```
+https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow/all.min.js
 ```
 
 Files live in `node_modules/riverflow/`. Copy the ones you need into your
@@ -49,7 +61,21 @@ Optional config: `color`, `gradient`, `height`, `duration`.
 Syntax-highlighted code editor built on highlight.js (bundled as
 `editor/highlight.min.js`).
 ```html
+<div class="editor editor-dark editor-number">
+  const hello = () => "world";
+</div>
 <script src="editor/editor.js"></script>
+```
+
+### Toast Notification (`toast/toast.js')
+Toast message with different Themes, Modes, and animations.
+```html
+<script src="toast/toast.js"></script>
+<script>
+  toast("Hello world!");
+  toast("Something went wrong", { type: "error" });
+  toast("Update complete", { type: "success" });
+</script>
 ```
 
 ## License
