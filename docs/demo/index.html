@@ -141,25 +141,30 @@ $ npm run build
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.0.7/all.min.js"></script>
-  
-  <script src="https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.0.8/toast/toast.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.0.7/toast/toast.min.js"></script>
 
   <script>
     (function () {
+      // FIX: Set toast position to TOP so they're visible!
+      if (typeof setToastPosition !== 'undefined') {
+        setToastPosition('top-right');
+      }
+      
+      // Toast buttons
       document.getElementById('toast-success-btn').addEventListener('click', () => {
-        toastSuccess('Update complete.');
+        toastSuccess('Update complete! 🎉');
       });
       document.getElementById('toast-error-btn').addEventListener('click', () => {
-        toastError('Something went wrong.');
+        toastError('Something went wrong ❌');
       });
       document.getElementById('toast-warning-btn').addEventListener('click', () => {
-        toastWarning('Check your input.');
+        toastWarning('Check your input ⚠️');
       });
       document.getElementById('toast-info-btn').addEventListener('click', () => {
-        toastInfo('New update available.');
+        toastInfo('New update available 💡');
       });
 
-      console.log('Toast ready! Click any toast button.');
+      console.log('🍞 Toast ready! Toasts will appear at top-right.');
     })();
   </script>
 
