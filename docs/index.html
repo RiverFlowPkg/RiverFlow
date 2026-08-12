@@ -183,6 +183,7 @@
   <a href="#structure">File Structure</a>
   <div class="nav-group">Modules</div>
   <a href="#bar">bar.js</a>
+  <a href="#toast">toast.js</a>
   <a href="#editor">editor.js</a>
   <a href="#terminal">terminal.js</a>
   <a href="#typing">typing.js</a>
@@ -224,6 +225,7 @@
     <table>
       <tr><th>Module</th><th>Path</th><th>Also needs</th></tr>
       <tr><td>Loading bar</td><td>bar/bar.js</td><td>—</td></tr>
+      <tr><td>Toast</td><td>toast/toast.js</td><td>—</td></tr>
       <tr><td>Code editor</td><td>editor/editor.js</td><td>editor/highlight.min.js (same folder)</td></tr>
       <tr><td>Terminal</td><td>editor/terminal.js</td><td>—</td></tr>
       <tr><td>Typing effect</td><td>effects/typing.js</td><td>—</td></tr>
@@ -239,6 +241,8 @@
       <span class="d">project/</span><br>
       &nbsp;&nbsp;<span class="d">bar/</span><br>
       &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">bar.js</span><br>
+      &nbsp;&nbsp;<span class="d">toast/</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">toast.js</span><br>
       &nbsp;&nbsp;<span class="d">editor/</span><br>
       &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">editor.js</span><br>
       &nbsp;&nbsp;&nbsp;&nbsp;<span class="f">terminal.js</span><br>
@@ -288,6 +292,57 @@
       <tr><td>height</td><td>3</td><td>Bar thickness in px</td></tr>
       <tr><td>duration</td><td>600</td><td>Finish + fade-out speed in ms</td></tr>
     </table>
+  </section>
+
+  <section class="doc-section" id="toast">
+    <h2>toast.js <span class="tag-badge">Toast Notifications</span></h2>
+    <p>Simple, clean toast notifications with multiple visual modes and animations. Show a toast message, or bind one to any clickable element.</p>
+
+    <h3>Basic usage</h3>
+    <pre><code><span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"toast/toast.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+
+<span class="tag">&lt;script&gt;</span>
+  <span class="fn">toast</span>(<span class="str">"Hello world!"</span>);
+  <span class="fn">toast</span>(<span class="str">"Something went wrong"</span>, { <span class="att">type</span>: <span class="str">"error"</span> });
+  <span class="fn">toast</span>(<span class="str">"Update complete"</span>, { <span class="att">type</span>: <span class="str">"success"</span> });
+<span class="tag">&lt;/script&gt;</span></code></pre>
+
+    <h3>Bind to a click</h3>
+    <pre><code><span class="tag">&lt;button</span> <span class="att">id</span>=<span class="str">"my-btn"</span><span class="tag">&gt;</span>Click me<span class="tag">&lt;/button&gt;</span>
+
+<span class="tag">&lt;script&gt;</span>
+  <span class="fn">bindToast</span>({
+    <span class="att">id</span>:      <span class="str">"my-btn"</span>,
+    <span class="att">message</span>: <span class="str">"Button clicked!"</span>,
+    <span class="att">type</span>:    <span class="str">"info"</span>
+  });
+<span class="tag">&lt;/script&gt;</span></code></pre>
+
+    <h3>Shorthands</h3>
+    <pre><code><span class="fn">toastSuccess</span>(<span class="str">"Done!"</span>);
+<span class="fn">toastError</span>(<span class="str">"Failed"</span>);
+<span class="fn">toastWarning</span>(<span class="str">"Check your input"</span>);
+<span class="fn">toastInfo</span>(<span class="str">"New update available"</span>);</code></pre>
+
+    <h3>Options</h3>
+    <table>
+      <tr><th>Option</th><th>Default</th><th>What it does</th></tr>
+      <tr><td>type</td><td>'default'</td><td>default, success, warning, error, info</td></tr>
+      <tr><td>mode</td><td>'dark'</td><td>light, dark, neon, glass, gradient, minimal</td></tr>
+      <tr><td>animation</td><td>'right-left'</td><td>up-down, down-up, left-right, right-left, zoom, bounce</td></tr>
+      <tr><td>duration</td><td>4000</td><td>Auto-hide delay in ms (0 = never)</td></tr>
+      <tr><td>closeable</td><td>true</td><td>Show close button</td></tr>
+    </table>
+
+    <h3>Global defaults</h3>
+    <pre><code><span class="fn">setToastMode</span>(<span class="str">"neon"</span>);
+<span class="fn">setToastAnimation</span>(<span class="str">"bounce"</span>);
+<span class="fn">setToastPosition</span>(<span class="str">"top-center"</span>);
+<span class="fn">setToastDuration</span>(<span class="num">3000</span>);</code></pre>
+
+    <h3>Manage bindings</h3>
+    <pre><code><span class="fn">unbindToast</span>(<span class="str">"my-btn"</span>);      <span class="cmt">// remove one</span>
+<span class="fn">unbindAllToasts</span>();               <span class="cmt">// remove all</span></code></pre>
   </section>
 
   <section class="doc-section" id="editor">
@@ -539,7 +594,8 @@
     <h2>Changelog</h2>
     <table>
       <tr><th>Version</th><th>Notes</th></tr>
-      <tr><td>1.0.5</td><td>Added <code>sunshine.js</code> so you can use it to give your website a sunny effect. </td></tr>
+      <tr><td>1.0.6</td><td>New <code>toast.js</code> module — toast notifications with modes, animations, and click binding. Zero deps.</td></tr>
+      <tr><td>1.0.5</td><td>Added <code>sunshine.js</code> so you can use it to give your website a sunny effect.</td></tr>
       <tr><td>1.0.4</td><td>Updated <code>demo.html</code> and <code>Docs/index.html</code>.</td></tr>
       <tr><td>1.0.3</td><td>Fixed <code>docs/index.html</code> and <code>Demo.html</code> Problems.</td></tr>
       <tr><td>1.0.2</td><td>Fixed <code>editor.js</code> loading <code>highlight.min.js</code> from an incorrect relative path, which silently broke syntax highlighting when used from a project's root folder.</td></tr>
