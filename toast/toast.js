@@ -122,8 +122,6 @@
         return el;
     }
 
-    const container = getContainer();
-
     function injectStyles() {
         if (stylesInjected) return;
         const style = document.createElement('style');
@@ -157,6 +155,7 @@
         }
         toast.innerHTML = html;
 
+        const container = getContainer();
         container.appendChild(toast);
 
         requestAnimationFrame(function() {
@@ -232,7 +231,7 @@
         var positions = ['bottom-right', 'bottom-left', 'top-right', 'top-left', 'top-center', 'bottom-center'];
         if (positions.indexOf(pos) !== -1) {
             currentPosition = pos;
-            container.className = 'rf-toast-container ' + pos;
+            getContainer().className = 'rf-toast-container ' + pos;
         }
     };
 
