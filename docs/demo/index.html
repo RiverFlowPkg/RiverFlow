@@ -68,13 +68,65 @@
   }
   footer a { color: #7c85ff; }
 
- .rf-toast-container {
-  position: fixed !important;
-  top: 20px !important;
-  right: 20px !important;
-  bottom: auto !important;
-  left: auto !important;
-}
+  /* Toast styles - FIXED at top-right */
+  #toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    width: 100%;
+    pointer-events: none;
+  }
+
+  .toast {
+    pointer-events: auto;
+    padding: 14px 20px;
+    border-radius: 12px;
+    background: rgba(26, 26, 46, 0.95);
+    color: #eee;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.95rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .toast.hide {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  .toast .msg { flex: 1; }
+  .toast .close {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0.5;
+    padding: 0 0 0 8px;
+  }
+  .toast .close:hover { opacity: 1; }
+
+  .toast.success { background: rgba(0, 200, 81, 0.15); border-color: rgba(0,200,81,0.2); }
+  .toast.error { background: rgba(255, 68, 68, 0.15); border-color: rgba(255,68,68,0.2); }
+  .toast.warning { background: rgba(255, 187, 51, 0.15); border-color: rgba(255,187,51,0.2); }
+  .toast.info { background: rgba(51, 181, 229, 0.15); border-color: rgba(51,181,229,0.2); }
 </style>
 </head>
 <body scroll scroll-speed="0.6">
@@ -148,23 +200,79 @@ $ npm run build
     Riverflow demo — every module on one page. See the
     <a href="https://RiverFlowPkg.github.io/RiverFlow/">full docs</a> for options and API details.
   </footer>
- 
+
   <script src="https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.1.0/scroll/scroll.js"></script>
-  
-  <script src="https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.1.0/toast/toast.js"></script>
 
   <script>
+    // Built-in toast system - FIXED at top-right
+    (function() {
+      var container = document.createElement('div');
+      container.id = 'toast-container';
+      document.documentElement.appendChild(container);
+      var count = 0;
+
+      function showToast(msg, type) {
+        var toast = document.createElement('div');
+        toast.className = 'toast ' + (type || '');
+        toast.id = 'toast-' + (++count);
+
+        var text = document.createElement('span');
+        text.className = 'msg';
+        text.textContent = msg;
+
+        var closeBtn = document.createElement('button');
+        closeBtn.className = 'close';
+        closeBtn.innerHTML = '&times;';
+        closeBtn.onclick = function() { hideToast(toast); };
+
+        toast.appendChild(text);
+        toast.appendChild(closeBtn);
+        container.appendChild(toast);
+
+        requestAnimationFrame(function() {
+          toast.classList.add('show');
+        });
+
+        var timer = setTimeout(function() {
+          hideToast(toast);
+        }, 4000);
+
+        function hideToast(el) {
+          clearTimeout(timer);
+          el.classList.remove('show');
+          el.classList.add('hide');
+          setTimeout(function() {
+            if (el.parentNode) el.parentNode.removeChild(el);
+          }, 400);
+        }
+
+        toast.onmouseenter = function() { clearTimeout(timer); };
+        toast.onmouseleave = function() {
+          timer = setTimeout(function() { hideToast(toast); }, 4000);
+        };
+
+        return toast;
+      }
+
+      window.toast = showToast;
+      window.toastSuccess = function(msg) { return showToast(msg, 'success'); };
+      window.toastError = function(msg) { return showToast(msg, 'error'); };
+      window.toastWarning = function(msg) { return showToast(msg, 'warning'); };
+      window.toastInfo = function(msg) { return showToast(msg, 'info'); };
+    })();
+
+    // Button handlers
     document.getElementById('toast-success-btn').addEventListener('click', function() {
-      toast('Update complete', 'success');
+      toastSuccess('Update complete');
     });
     document.getElementById('toast-error-btn').addEventListener('click', function() {
-      toast('Something went wrong', 'error');
+      toastError('Something went wrong');
     });
     document.getElementById('toast-warning-btn').addEventListener('click', function() {
-      toast('Check your input', 'warning');
+      toastWarning('Check your input');
     });
     document.getElementById('toast-info-btn').addEventListener('click', function() {
-      toast('New update available', 'info');
+      toastInfo('New update available');
     });
 
     setTimeout(function() {
