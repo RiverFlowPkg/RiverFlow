@@ -1,6 +1,6 @@
 {
   "name": "@riverflowpkg/riverflow",
-  "version": "1.0.6",
+  "version": "1.0.9",
   "description": "Drop-in vanilla JS browser widgets: top loading bar, smooth scroll, typing effect, underwater overlay, and a code editor with syntax highlighting.",
   "keywords": [
     "loading-bar",
