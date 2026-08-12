@@ -67,7 +67,7 @@ Syntax-highlighted code editor built on highlight.js (bundled as
 <script src="editor/editor.js"></script>
 ```
 
-### Toast Notification (`toast/toast.js`)
+### Toast Message (`toast/toast.js`)
 Toast message with different Themes, Modes, and animations.
 ```html
 <script src="toast/toast.js"></script>
