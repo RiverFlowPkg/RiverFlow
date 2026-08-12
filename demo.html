@@ -53,6 +53,12 @@
   button.demo-btn:hover { opacity: 0.85; }
   button.demo-btn.is-on { background: #22c55e; }
 
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  button.demo-btn.toast-success { background: #22c55e; }
+  button.demo-btn.toast-error   { background: #ef4444; }
+  button.demo-btn.toast-warning { background: #f59e0b; color: #0d0d0d; }
+  button.demo-btn.toast-info    { background: #3b82f6; }
+
   footer {
     text-align: center;
     padding: 3rem 1.5rem 6rem;
@@ -101,6 +107,17 @@ $ npm run build
     </div>
   </section>
 
+  <section id="demo-toast">
+    <h2>Toast Notifications</h2>
+    <p class="desc">Clean toast messages with multiple types and animations. Click a button to fire one.</p>
+    <div class="btn-row">
+      <button class="demo-btn toast-success" id="toast-success-btn">Success toast</button>
+      <button class="demo-btn toast-error" id="toast-error-btn">Error toast</button>
+      <button class="demo-btn toast-warning" id="toast-warning-btn">Warning toast</button>
+      <button class="demo-btn toast-info" id="toast-info-btn">Info toast</button>
+    </div>
+  </section>
+
   <section id="demo-underwater">
     <h2>Underwater Effect</h2>
     <p class="desc">Full-page atmosphere overlay — blue tint, drifting light, gentle wave distortion. Off by default here since it's a heavy visual effect; toggle it on.</p>
@@ -123,18 +140,27 @@ $ npm run build
     <a href="https://RiverFlowPkg.github.io/RiverFlow/">full docs</a> for options and API details.
   </footer>
 
-  <script src="https://unpkg.com/@riverflowpkg/riverflow@1.0.3/bar/bar.js"></script>
+  <!-- Single bundled build — bar, typing, editor, terminal, toast, underwater, sunshine, scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow/all.min.js"></script>
 
-  <script src="effects/typing.js"></script>
-
-  <script src="https://unpkg.com/@riverflowpkg/riverflow@1.0.3/editor/editor.js"></script>
-
-  <script src="https://unpkg.com/@riverflowpkg/riverflow@1.0.3/editor/terminal.js"></script>
-
-  <script src="https://unpkg.com/@riverflowpkg/riverflow@1.0.3/scroll/scroll.js"></script>
+  <script>
+    (function () {
+      document.getElementById('toast-success-btn').addEventListener('click', () => {
+        toastSuccess('Update complete!');
+      });
+      document.getElementById('toast-error-btn').addEventListener('click', () => {
+        toastError('Something went wrong');
+      });
+      document.getElementById('toast-warning-btn').addEventListener('click', () => {
+        toastWarning('Check your input');
+      });
+      document.getElementById('toast-info-btn').addEventListener('click', () => {
+        toastInfo('New update available');
+      });
+    })();
+  </script>
 
   <div class="effect-underwater" style="display:none;" id="underwater-anchor"></div>
-  <script src="https://unpkg.com/@riverflowpkg/riverflow@1.0.3/effects/underwater.js"></script>
   <script>
     (function () {
       const btn = document.getElementById('underwater-toggle');
@@ -169,7 +195,6 @@ $ npm run build
 
   <div class="effect-sunshine" style="display:none;" id="sunshine-anchor"
        data-corner="top-right" data-min="0.15" data-max="0.85" data-period="900"></div>
-  <script src="https://unpkg.com/@riverflowpkg/riverflow@1.0.5/effects/sunshine.js"></script>
   <script>
     (function () {
       const btn = document.getElementById('sunshine-toggle');
