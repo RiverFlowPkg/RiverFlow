@@ -141,22 +141,28 @@ $ npm run build
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.0.7/all.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.0.7/toast/toast.js"></script>
+  
+  <!-- Toast script - using the correct path -->
+  <script src="https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.0.7/toast/toast.min.js"></script>
 
   <script>
     (function () {
+      // Toast buttons
       document.getElementById('toast-success-btn').addEventListener('click', () => {
-        toastSuccess('Update complete!');
+        toastSuccess('Update complete.');
       });
       document.getElementById('toast-error-btn').addEventListener('click', () => {
-        toastError('Something went wrong');
+        toastError('Something went wrong.');
       });
       document.getElementById('toast-warning-btn').addEventListener('click', () => {
-        toastWarning('Check your input');
+        toastWarning('Check your input.');
       });
       document.getElementById('toast-info-btn').addEventListener('click', () => {
-        toastInfo('New update available');
+        toastInfo('New update available.');
       });
+
+      // Also add a default toast example
+      console.log('Toast ready! Click any toast button.');
     })();
   </script>
 
