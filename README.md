@@ -6,14 +6,14 @@ drop it in a `<script>` tag, and it wires itself up.
 ## Install
 
 ```
-npm install @riverflowpkg/riverflow@1.0.6
+npm install @riverflowpkg/riverflow@1.0.8
 ```
 
 ## Linking
 
 UNPKG
 ```
-https://unpkg.com/@riverflowpkg/riverflow@1.0.6/all.min.js
+https://unpkg.com/@riverflowpkg/riverflow@1.0.8/all.min.js
 ```
 
 JSDelivr
