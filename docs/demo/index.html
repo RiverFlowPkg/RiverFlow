@@ -142,12 +142,10 @@ $ npm run build
 
   <script src="https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.0.7/all.min.js"></script>
   
-  <!-- Toast script - using the correct path -->
-  <script src="https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.0.7/toast/toast.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@riverflowpkg/riverflow@1.0.8/toast/toast.js"></script>
 
   <script>
     (function () {
-      // Toast buttons
       document.getElementById('toast-success-btn').addEventListener('click', () => {
         toastSuccess('Update complete.');
       });
@@ -161,7 +159,6 @@ $ npm run build
         toastInfo('New update available.');
       });
 
-      // Also add a default toast example
       console.log('Toast ready! Click any toast button.');
     })();
   </script>
