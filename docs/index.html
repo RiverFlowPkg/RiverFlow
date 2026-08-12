@@ -296,43 +296,36 @@
 
   <section class="doc-section" id="toast">
     <h2>toast.js <span class="tag-badge">Toast Notifications</span></h2>
-    <p>Simple, clean toast notifications with multiple visual modes and animations. Show a toast message, or bind one to any clickable element.</p>
+    <p>Simple, clean toast notifications with multiple visual modes and animations. Show a toast message with optional type, mode, and animation.</p>
 
     <h3>Basic usage</h3>
     <pre><code><span class="tag">&lt;script</span> <span class="att">src</span>=<span class="str">"toast/toast.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
 
 <span class="tag">&lt;script&gt;</span>
   <span class="fn">toast</span>(<span class="str">"Hello world!"</span>);
-  <span class="fn">toast</span>(<span class="str">"Something went wrong"</span>, { <span class="att">type</span>: <span class="str">"error"</span> });
-  <span class="fn">toast</span>(<span class="str">"Update complete"</span>, { <span class="att">type</span>: <span class="str">"success"</span> });
+  <span class="fn">toast</span>(<span class="str">"Success!"</span>, <span class="str">"success"</span>);
+  <span class="fn">toast</span>(<span class="str">"Error!"</span>, <span class="str">"error"</span>, <span class="str">"neon"</span>);
+  <span class="fn">toast</span>(<span class="str">"Warning!"</span>, <span class="str">"warning"</span>, <span class="str">"glass"</span>, <span class="str">"bounce"</span>);
 <span class="tag">&lt;/script&gt;</span></code></pre>
 
-    <h3>Bind to a click</h3>
-    <pre><code><span class="tag">&lt;button</span> <span class="att">id</span>=<span class="str">"my-btn"</span><span class="tag">&gt;</span>Click me<span class="tag">&lt;/button&gt;</span>
-
-<span class="tag">&lt;script&gt;</span>
-  <span class="fn">bindToast</span>({
-    <span class="att">id</span>:      <span class="str">"my-btn"</span>,
-    <span class="att">message</span>: <span class="str">"Button clicked!"</span>,
-    <span class="att">type</span>:    <span class="str">"info"</span>
-  });
-<span class="tag">&lt;/script&gt;</span></code></pre>
-
-    <h3>Shorthands</h3>
-    <pre><code><span class="fn">toastSuccess</span>(<span class="str">"Done!"</span>);
-<span class="fn">toastError</span>(<span class="str">"Failed"</span>);
-<span class="fn">toastWarning</span>(<span class="str">"Check your input"</span>);
-<span class="fn">toastInfo</span>(<span class="str">"New update available"</span>);</code></pre>
-
-    <h3>Options</h3>
+    <h3>Syntax</h3>
+    <pre><code><span class="fn">toast</span>(message, type, mode, animation);</code></pre>
     <table>
-      <tr><th>Option</th><th>Default</th><th>What it does</th></tr>
+      <tr><th>Parameter</th><th>Default</th><th>Options</th></tr>
+      <tr><td>message</td><td>—</td><td>String (required)</td></tr>
       <tr><td>type</td><td>'default'</td><td>default, success, warning, error, info</td></tr>
       <tr><td>mode</td><td>'dark'</td><td>light, dark, neon, glass, gradient, minimal</td></tr>
       <tr><td>animation</td><td>'right-left'</td><td>up-down, down-up, left-right, right-left, zoom, bounce</td></tr>
-      <tr><td>duration</td><td>4000</td><td>Auto-hide delay in ms (0 = never)</td></tr>
-      <tr><td>closeable</td><td>true</td><td>Show close button</td></tr>
     </table>
+
+    <h3>Shorthands</h3>
+    <pre><code><span class="fn">toastSuccess</span>(<span class="str">"Done!"</span>);
+<span class="fn">toastSuccess</span>(<span class="str">"Done!"</span>, <span class="str">"neon"</span>);
+<span class="fn">toastSuccess</span>(<span class="str">"Done!"</span>, <span class="str">"neon"</span>, <span class="str">"bounce"</span>);
+
+<span class="fn">toastError</span>(<span class="str">"Failed"</span>);
+<span class="fn">toastWarning</span>(<span class="str">"Check your input"</span>);
+<span class="fn">toastInfo</span>(<span class="str">"New update available"</span>);</code></pre>
 
     <h3>Global defaults</h3>
     <pre><code><span class="fn">setToastMode</span>(<span class="str">"neon"</span>);
@@ -340,9 +333,34 @@
 <span class="fn">setToastPosition</span>(<span class="str">"top-center"</span>);
 <span class="fn">setToastDuration</span>(<span class="num">3000</span>);</code></pre>
 
-    <h3>Manage bindings</h3>
-    <pre><code><span class="fn">unbindToast</span>(<span class="str">"my-btn"</span>);      <span class="cmt">// remove one</span>
-<span class="fn">unbindAllToasts</span>();               <span class="cmt">// remove all</span></code></pre>
+    <h3>Examples</h3>
+    <pre><code><span class="cmt">// Simple message</span>
+<span class="fn">toast</span>(<span class="str">"Hello world!"</span>);
+
+<span class="cmt">// With type</span>
+<span class="fn">toast</span>(<span class="str">"Success!"</span>, <span class="str">"success"</span>);
+
+<span class="cmt">// With type and mode</span>
+<span class="fn">toast</span>(<span class="str">"Error!"</span>, <span class="str">"error"</span>, <span class="str">"neon"</span>);
+
+<span class="cmt">// With type, mode, and animation</span>
+<span class="fn">toast</span>(<span class="str">"Warning!"</span>, <span class="str">"warning"</span>, <span class="str">"glass"</span>, <span class="str">"bounce"</span>);
+
+<span class="cmt">// Using shorthands</span>
+<span class="fn">toastSuccess</span>(<span class="str">"Done!"</span>, <span class="str">"gradient"</span>, <span class="str">"zoom"</span>);
+<span class="fn">toastError</span>(<span class="str">"Failed!"</span>, <span class="str">"dark"</span>, <span class="str">"up-down"</span>);</code></pre>
+
+    <h3>Options</h3>
+    <table>
+      <tr><th>Option</th><th>Default</th><th>Values</th></tr>
+      <tr><td>type</td><td>'default'</td><td>default, success, warning, error, info</td></tr>
+      <tr><td>mode</td><td>'dark'</td><td>light, dark, neon, glass, gradient, minimal</td></tr>
+      <tr><td>animation</td><td>'right-left'</td><td>up-down, down-up, left-right, right-left, zoom, bounce</td></tr>
+      <tr><td>position</td><td>'top-right'</td><td>top-right, top-left, bottom-right, bottom-left, top-center, bottom-center</td></tr>
+      <tr><td>duration</td><td>4000</td><td>ms (0 = never auto-hide)</td></tr>
+    </table>
+
+    <div class="callout"><strong>Tip:</strong> The toast container is fixed at the top-right by default. Use <code>setToastPosition()</code> to change it.</div>
   </section>
 
   <section class="doc-section" id="editor">
@@ -505,7 +523,7 @@
 
   <section class="doc-section" id="sunshine">
     <h2>sunshine.js <span class="tag-badge">Atmosphere Effect</span></h2>
-    <p>A sunshine atmosphere over in the page — bright, blur, lightning.</p>
+    <p>A sunshine atmosphere over the whole page — warm glow, bright light rays, and subtle animation.</p>
 
     <h3>Usage</h3>
     <pre><code><span class="tag">&lt;body</span> <span class="att">class</span>=<span class="str">"effect-sunshine"</span><span class="tag">&gt;</span>
@@ -518,11 +536,10 @@
     <h3>What it does</h3>
     <table>
       <tr><th>Layer</th><th>Description</th></tr>
-      <tr><td>color tint</td><td>Deep blue gradient over the full page</td></tr>
-      <tr><td>caustics</td><td>Animated light blobs drifting on canvas, like light through water</td></tr>
-      <tr><td>blur</td><td>Subtle backdrop-filter blur + saturation boost</td></tr>
-      <tr><td>wave distortion</td><td>SVG fractal noise making the tint ripple slowly</td></tr>
-      <tr><td>scroll shift</td><td>Caustic blobs shift as you scroll</td></tr>
+      <tr><td>color tint</td><td>Warm golden gradient over the full page</td></tr>
+      <tr><td>light rays</td><td>Animated sunlight rays drifting across the page</td></tr>
+      <tr><td>glow</td><td>Subtle warm glow effect</td></tr>
+      <tr><td>scroll shift</td><td>Rays shift as you scroll</td></tr>
     </table>
   </section>
 
@@ -594,7 +611,7 @@
     <h2>Changelog</h2>
     <table>
       <tr><th>Version</th><th>Notes</th></tr>
-      <tr><td>1.0.8</td><td>fixed <code>toast.js</code> and <code>all.min.js</code>.</td></tr>
+      <tr><td>1.0.8</td><td>Updated <code>toast.js</code> with simpler API: <code>toast(message, type, mode, animation)</code>. Added shorthands <code>toastSuccess()</code>, <code>toastError()</code>, etc. Fixed <code>all.min.js</code>.</td></tr>
       <tr><td>1.0.7</td><td>Fixed <code>package.json</code> to add <code>toast.js</code> and <code>all.min.js</code>.</td></tr>
       <tr><td>1.0.6</td><td>New <code>toast.js</code> to display toast notification/message with different themes. and added <code>all.min.js</code> that contains everything.</td></tr>
       <tr><td>1.0.5</td><td>Added <code>sunshine.js</code> so you can use it to give your website a sunny effect.</td></tr>
